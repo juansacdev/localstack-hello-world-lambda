@@ -1,0 +1,26 @@
+service: my-app
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    debug: true
+    edgePort: 4566
+    autostart: false
+    stages:
+      - local
+      - dev
+    host: http://localhost
+    lambda:
+      mountCode: true
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20200924
+
+functions:
+  hello:
+    handler: handler.hello
